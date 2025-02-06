@@ -14,15 +14,34 @@
         </div>
     </div>
 
-    <!-- Flowers for animation -->
-    <div class="flowers">
-        <span class="flower">🌸</span>
-        <span class="flower">🌺</span>
-        <span class="flower">🌷</span>
-        <span class="flower">🌻</span>
-        <span class="flower">💐</span>
-        <span class="flower">🌹</span>
-        <span class="flower">🌼</span>
-    </div>
+    <script>
+        // Function to create falling flowers
+        function createFlower() {
+            const flower = document.createElement("span");
+            flower.classList.add("flower");
+            
+            // Random flower emoji
+            const flowerEmojis = ["🌸", "🌺", "🌷", "🌻", "💐", "🌹", "🌼"];
+            flower.innerText = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+            
+            // Random starting position from the top
+            flower.style.left = Math.random() * 100 + "vw"; 
+            flower.style.top = "-5vh"; // Start above the screen
+            
+            // Random animation duration and delay
+            const duration = Math.random() * 5 + 3; // Between 3s and 8s
+            flower.style.animation = `fall ${duration}s linear`;
+            
+            document.body.appendChild(flower);
+
+            // Remove flower after it falls
+            setTimeout(() => {
+                flower.remove();
+            }, duration * 1000);
+        }
+
+        // Create flowers at intervals
+        setInterval(createFlower, 500); // A new flower every 0.5 seconds
+    </script>
 </body>
 </html>
